@@ -15,4 +15,25 @@
 -- You should have received a copy of the GNU General Public License
 -- along with LuaOS.  If not, see <http://www.gnu.org/licenses/>.
 
+---@class Kernel
+---@field log { debug: fun(msg: string), info: fun(msg: string), warning: fun(msg: string), error: fun(msg: string), fatal: fun(msg: string) }
+---@field write fun(msg: string)
+---@field read fun(): string
+kernel = kernel
+
 kernel.log.info "REPL"
+
+while true do
+    kernel.write "> "
+    local line = kernel.read()
+    local fn, err = load(line, "REPL", "t", _G)
+    if fn then
+        local ok, err = pcall(fn)
+        if ok then
+            if err ~= nil then kernel.log.info(tostring(err)) end
+
+        else
+            kernel.log.error(err)
+        end
+    else kernel.log.error(assert(err)) end
+end

@@ -11,7 +11,7 @@ build = {
    type = "builtin",
    modules = {
       ["repl"] = "src/repl.lua",
-      ["module.nested"] = "src/module/nested.lua",
-      ["animation"] = "src/animation.lua"
+      -- ["module.nested"] = "src/module/nested.lua",
+      -- ["animation"] = "src/animation.lua"
    }
 }
