@@ -24,7 +24,6 @@
     "runtime.version": "LuaJIT",
     "workspace.ignoreDir": [
         ".vscode",
-        "lua_modules/share/lua/5.1/thor"
     ],
     "workspace.ignoreSubmodules": false,
     "workspace.library": [

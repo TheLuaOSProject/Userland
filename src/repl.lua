@@ -23,17 +23,30 @@ kernel = kernel
 
 kernel.log.info "REPL"
 
+---@generic T
+---@param v T?
+---@param message string
+---@vararg any
+---@return T
+function assert(v, message, ...)
+    if not v then kernel.log.error(message:format(...)) end
+
+    return v
+end
+
 while true do
     kernel.write "> "
     local line = kernel.read()
-    local fn, err = load(line, "REPL", "t", _G)
-    if fn then
-        local ok, err = pcall(fn)
-        if ok then
-            if err ~= nil then kernel.log.info(tostring(err)) end
+    if line:sub(1, 1) == '=' then
+        line = "return "..line:sub(2)
+    end
 
-        else
-            kernel.log.error(err)
-        end
-    else kernel.log.error(assert(err)) end
+    local fn = assert(loadstring(line, "REPL"))
+
+    local ok, result = pcall(fn)
+    if ok then
+        kernel.write(tostring(result)..'\n')
+    else
+        kernel.log.error(result)
+    end
 end

@@ -59,60 +59,6 @@ local fb = kernel.framebuffer.get()
 
 local width, height = fb:dimensions()
 
----@param ticks integer
----@return integer
-local function sleep(ticks)
-    local i = 0
-    while i < ticks do
-        i = i + 1
-    end
-
-    return i
+for i = width, 0, -1 do
+    fb:draw_rect(i, height/2, 10, 10, colours.blue)
 end
-
-
--- spinning triangle
-
-local x1, y1 = 0, 0
-local x2, y2 = 0, 0
-local x3, y3 = 0, 0
-
-local function draw()
-    fb:draw_triangle(x1, y1, x2, y2, x3, y3, colours.white)
-end
-
-local function update()
-    x1 = x1 + 1
-    y1 = y1 + 1
-
-    x2 = x2 + 1
-    y2 = y2 - 1
-
-    x3 = x3 - 1
-    y3 = y3 - 1
-
-    if x1 > width then x1 = 0 end
-    if y1 > height then y1 = 0 end
-
-    if x2 > width then x2 = 0 end
-    if y2 < 0 then y2 = height end
-
-    if x3 < 0 then x3 = width end
-    if y3 < 0 then y3 = height end
-end
-
-
-local function main()
-    fb:save()
-
-    while true do
-        update()
-        draw()
-        fb:load()
-
-        sleep(100000)
-    end
-end
-
-
-main()

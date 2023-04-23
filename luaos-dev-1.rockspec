@@ -12,6 +12,7 @@ build = {
    modules = {
       ["repl"] = "src/repl.lua",
       -- ["module.nested"] = "src/module/nested.lua",
-      -- ["animation"] = "src/animation.lua"
+      ["animation"] = "src/animation.lua",
+      -- ["animation2"] = "src/animation2.lua"
    }
 }
