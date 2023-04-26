@@ -10,9 +10,9 @@ description = {
 build = {
    type = "builtin",
    modules = {
-      ["repl"] = "src/repl.lua",
+      -- ["repl"] = "src/repl.lua",
       -- ["module.nested"] = "src/module/nested.lua",
       ["animation"] = "src/animation.lua",
-      -- ["animation2"] = "src/animation2.lua"
+      ["animation2"] = "src/animation2.lua"
    }
 }

@@ -35,18 +35,19 @@ function assert(v, message, ...)
 end
 
 while true do
-    kernel.write "> "
-    local line = kernel.read()
-    if line:sub(1, 1) == '=' then
-        line = "return "..line:sub(2)
-    end
+    -- kernel.write "> "
+    -- local line = kernel.read()
+    -- if line == "exit" then return end
+    -- if line:sub(1, 1) == '=' then
+    --     line = "return "..line:sub(2)
+    -- end
 
-    local fn = assert(loadstring(line, "REPL"))
+    -- local fn = assert(loadstring(line, "REPL"))
 
-    local ok, result = pcall(fn)
-    if ok then
-        kernel.write(tostring(result)..'\n')
-    else
-        kernel.log.error(result)
-    end
+    -- local ok, result = pcall(fn)
+    -- if ok then
+    --     kernel.write(tostring(result)..'\n')
+    -- else
+    --     kernel.log.error(result)
+    -- end
 end

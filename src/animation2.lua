@@ -55,10 +55,25 @@ local colours = {
     transparent = 0x00000000
 }
 
+---@param ticks integer
+---@return integer
+local function sleep(ticks)
+    local i = 0
+    while i < ticks do
+        i = i + 1
+    end
+
+    return i
+end
+
+
 local fb = kernel.framebuffer.get()
 
 local width, height = fb:dimensions()
 
-for i = width, 0, -1 do
-    fb:draw_rect(i, height/2, 10, 10, colours.blue)
+for i = width, 0, -10 do
+    fb:draw_rect(i, height/2 + 10, 10, 10, colours.blue)
+
+    -- kernel.log.debug(string.format("Drawing rect at (%d, %d)", i, height/2))
+    sleep(100000)
 end
